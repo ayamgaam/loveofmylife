@@ -1,0 +1,233 @@
+<title>Untuk Alvina</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Caveat:wght@500&display=swap">
+<style>
+/* Layout: one narrow letter column; the story runs as a dated thread, the future sits at the end as an open page */
+:root {
+  --bg: #fbf5f7;
+  --paper: #ffffff;
+  --ink: #3a2433;
+  --muted: #7d6473;
+  --rose: #c2477a;
+  --honey: #e3a93b;
+  --line: #ecdbe3;
+  --font-display: "Gloock", "Georgia", serif;
+  --font-body: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --font-hand: "Caveat", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1219; --paper: #281a23; --ink: #f6e9ef; --muted: #bfa5b3;
+    --rose: #ec7aa7; --honey: #f0c062; --line: #3d2a36; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1d1219; --paper: #281a23; --ink: #f6e9ef; --muted: #bfa5b3;
+  --rose: #ec7aa7; --honey: #f0c062; --line: #3d2a36; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.06rem;
+  line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 38rem; margin: 0 auto; padding-block: 3.5rem 4rem; display: grid; gap: 4rem; }
+
+h1, h2 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(2.6rem, 9vw, 4.2rem); }
+h1 .amp { color: var(--rose); }
+h2 { font-size: clamp(1.6rem, 5vw, 2.1rem); }
+p { margin: 0; }
+.eyebrow { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.hand { font-family: var(--font-hand); font-size: 1.6rem; color: var(--rose); line-height: 1.2; }
+
+header { display: grid; gap: 1rem; }
+header .lede { color: var(--muted); max-width: 32rem; }
+
+section { display: grid; gap: 1.4rem; }
+
+/* Story thread */
+.thread { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; position: relative; }
+.thread::before { content: ""; position: absolute; left: .55rem; top: .6rem; bottom: .6rem; width: 2px; background: var(--line); }
+.thread li { display: grid; grid-template-columns: 1.1rem 1fr; gap: 1rem; }
+.thread .dot { width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--bg); border: 2px solid var(--rose); margin-top: .35rem; position: relative; }
+.thread li.now .dot { background: var(--rose); }
+.thread .body { min-width: 0; display: grid; gap: .35rem; }
+.thread time { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--rose); font-weight: 700; }
+.thread h3 { margin: 0; font-size: 1.15rem; }
+
+/* Little things */
+.things { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+.things li { display: grid; grid-template-columns: auto 1fr; gap: .8rem; align-items: baseline; }
+.things li::before { content: "♥"; color: var(--rose); font-size: .9rem; }
+
+/* Tickle button */
+.tease { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+button {
+  font: inherit; font-weight: 700; cursor: pointer;
+  border: 2px solid var(--rose); color: var(--rose); background: transparent;
+  padding: .6rem 1.2rem; border-radius: 999px;
+}
+button:hover { background: var(--rose); color: var(--paper); }
+button:focus-visible, label.slot:focus-within { outline: 3px solid var(--honey); outline-offset: 3px; }
+#teaseReply { color: var(--muted); }
+.wiggle { animation: wiggle .5s ease-in-out 2; }
+@keyframes wiggle { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
+
+/* Photos */
+.photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; }
+label.slot {
+  aspect-ratio: 3 / 4; max-width: 100%; border: 2px dashed var(--line); border-radius: .5rem;
+  display: grid; place-items: center; text-align: center; padding: .5rem;
+  font-size: .82rem; color: var(--muted); cursor: pointer; overflow: hidden; background: var(--paper);
+}
+label.slot img { width: 100%; height: 100%; object-fit: cover; }
+label.slot input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.hint { font-size: .85rem; color: var(--muted); }
+
+/* Future */
+.future {
+  background: var(--paper); border: 1px solid var(--line); border-radius: .75rem;
+  padding: 2rem 1.5rem; display: grid; gap: 1rem;
+}
+.future .plan { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.future .plan li { display: flex; gap: .7rem; }
+.future .plan li span:first-child { color: var(--honey); font-weight: 700; }
+
+footer { text-align: center; display: grid; gap: .5rem; }
+
+@media (prefers-reduced-motion: reduce) { .wiggle { animation: none; } }
+@media (max-width: 420px) { .photos { grid-template-columns: repeat(2, 1fr); } }
+</style>
+
+<main>
+  <header>
+    <p class="eyebrow">Cerita kita, sejauh ini</p>
+    <h1>Alvina <span class="amp">&amp;</span> aku</h1>
+    <p class="lede">Halaman kecil ini aku buat buat kamu. Isinya cerita kita, hal-hal kecil tentang kamu yang aku sayang, dan hal-hal yang masih mau aku jalani sama kamu.</p>
+  </header>
+
+  <section aria-labelledby="story">
+    <h2 id="story">Gimana kita ketemu</h2>
+    <ol class="thread">
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <div class="body">
+          <time>Juni 2025</time>
+          <h3>Match di Bumble</h3>
+          <p>Pertama kali kita kenalan. Waktu itu aku belum tahu kalau orang di layar itu bakal jadi orang yang paling aku sayang.</p>
+        </div>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <div class="body">
+          <time>Setelahnya</time>
+          <h3>Sempat hilang kontak</h3>
+          <p>Kita sempat jalan sendiri-sendiri. Aku kira cerita kita berhenti di situ.</p>
+        </div>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <div class="body">
+          <time>September 2025</time>
+          <h3>Ketemu lagi lewat teman</h3>
+          <p>Ternyata kamu kenalan sama temanku, dan kita dipertemukan lagi. Kali ini kita dekat beneran. Rasanya kayak dikasih kesempatan kedua.</p>
+        </div>
+      </li>
+      <li class="now">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="body">
+          <time>Sekarang</time>
+          <h3>Masih kamu</h3>
+          <p>Dan masih akan kamu.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="things">
+    <h2 id="things">Hal-hal kecil tentang kamu</h2>
+    <ul class="things">
+      <li><span>Kamu baik banget, ke aku dan ke orang-orang di sekitarmu.</span></li>
+      <li><span>Kamu kuat, walaupun hari-harimu nggak selalu gampang. Aku kagum sama kamu.</span></li>
+      <li><span>Kamu udah bantu aku lebih dari yang bisa aku bilang. Aku nggak pernah lupa, dan aku berterima kasih banget.</span></li>
+      <li><span>Kamu hobi banget nge-rage bait aku dan ngelitikin aku. Aku pura-pura kesel, padahal aku suka.</span></li>
+    </ul>
+    <div class="tease">
+      <button type="button" id="teaseBtn">Jahili aku</button>
+      <span id="teaseReply" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section aria-labelledby="photos">
+    <h2 id="photos">Kita</h2>
+    <div class="photos">
+      <label class="slot"><input type="file" id="p1" accept="image/*"><span>Tambah foto</span></label>
+      <label class="slot"><input type="file" id="p2" accept="image/*"><span>Tambah foto</span></label>
+      <label class="slot"><input type="file" id="p3" accept="image/*"><span>Tambah foto</span></label>
+    </div>
+    <p class="hint">Ketuk kotaknya buat pilih foto kita dari HP.</p>
+  </section>
+
+  <section aria-labelledby="next">
+    <div class="future">
+      <p class="eyebrow">Bab berikutnya</p>
+      <h2 id="next">Yang masih mau aku jalani sama kamu</h2>
+      <ul class="plan">
+        <li><span>→</span><span>Lebih banyak hari biasa: makan bareng, ngobrol nggak jelas, kamu ngejahilin aku lagi.</span></li>
+        <li><span>→</span><span>Nemenin kamu di hari-hari kamu lagi nggak enak badan, kayak kamu nemenin aku.</span></li>
+        <li><span>→</span><span>Pernikahan kita. Sederhana, tapi penuh arti.</span></li>
+      </ul>
+      <p class="hand">Halaman ini belum selesai. Masih banyak yang mau aku tulis bareng kamu.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="hand">Aku sayang kamu, Vin.</p>
+    <p class="hint">Dari aku, yang masih mau dijahili sama kamu bertahun-tahun lagi.</p>
+  </footer>
+</main>
+
+<script>
+  const replies = [
+    "Ih, geli! 😆",
+    "Udah, udah, nyerah!",
+    "Oke oke, kamu menang.",
+    "Sekali lagi deh, boleh.",
+  ];
+  let i = 0;
+  const btn = document.getElementById("teaseBtn");
+  const out = document.getElementById("teaseReply");
+  btn.addEventListener("click", () => {
+    out.textContent = replies[i % replies.length];
+    i++;
+    btn.classList.remove("wiggle");
+    void btn.offsetWidth;
+    btn.classList.add("wiggle");
+  });
+
+  document.querySelectorAll("label.slot input").forEach((input) => {
+    input.addEventListener("change", () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const slot = input.parentElement;
+        slot.querySelector("span")?.remove();
+        slot.querySelector("img")?.remove();
+        const img = document.createElement("img");
+        img.src = reader.result;
+        img.alt = "Foto kita";
+        slot.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+</script>

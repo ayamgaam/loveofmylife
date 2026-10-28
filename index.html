@@ -239,7 +239,6 @@ footer { text-align: center; display: grid; gap: .5rem; }
   function unlock() {
     gate.hidden = true;
     content.hidden = false;
-    try { sessionStorage.setItem("unlocked", "1"); } catch (e) {}
   }
 
   async function sha256(text) {
@@ -247,7 +246,7 @@ footer { text-align: center; display: grid; gap: .5rem; }
     return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
   }
 
-  try { if (sessionStorage.getItem("unlocked") === "1") unlock(); } catch (e) {}
+  try { sessionStorage.removeItem("unlocked"); } catch (e) {}
 
   document.getElementById("gateForm").addEventListener("submit", async (e) => {
     e.preventDefault();

@@ -103,6 +103,36 @@ label.slot input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 
 footer { text-align: center; display: grid; gap: .5rem; }
 
+/* Letter */
+.envelope {
+  position: relative; width: min(100%, 22rem); aspect-ratio: 3 / 2; justify-self: center;
+  background: var(--paper); border: 2px solid var(--line); border-radius: .4rem;
+  cursor: pointer; padding: 0; overflow: hidden; color: var(--ink);
+}
+.envelope:hover { background: var(--paper); color: var(--ink); }
+.envelope .flap {
+  position: absolute; inset: 0 0 auto 0; height: 60%; background: var(--line);
+  clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top; transition: transform .5s ease;
+}
+.envelope .seal {
+  position: absolute; left: 50%; top: 60%; transform: translate(-50%, -50%);
+  width: 3rem; height: 3rem; border-radius: 50%; background: var(--rose); color: var(--paper);
+  display: grid; place-items: center; font-size: 1.3rem;
+}
+.envelope .click {
+  position: absolute; left: 0; right: 0; bottom: .9rem; text-align: center;
+  font-family: var(--font-hand); font-size: 1.5rem; color: var(--rose);
+}
+.envelope.open .flap { transform: scaleY(-1); }
+.letter {
+  background: var(--paper); border: 1px solid var(--line); border-radius: .4rem;
+  padding: 2rem 1.4rem; display: grid; gap: 1rem; animation: rise .6s ease;
+}
+.letter p { max-width: 34rem; }
+.letter .greet, .letter .sign { font-family: var(--font-hand); font-size: 1.7rem; color: var(--rose); line-height: 1.25; }
+.letter .sign { text-align: right; }
+@keyframes rise { from { opacity: .2; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
 /* Lock screen */
 .gate { min-height: 100%; display: grid; place-items: center; padding-block: 4rem; }
 .gate form { max-width: 24rem; width: 100%; display: grid; gap: 1rem; text-align: center; }
@@ -117,7 +147,7 @@ footer { text-align: center; display: grid; gap: .5rem; }
 .gate .err { color: var(--rose); font-weight: 600; min-height: 1.5em; }
 .gate button { justify-self: center; }
 
-@media (prefers-reduced-motion: reduce) { .wiggle { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .wiggle, .letter { animation: none; } .envelope .flap { transition: none; } }
 @media (max-width: 420px) { .photos { grid-template-columns: repeat(2, 1fr); } }
 </style>
 
@@ -211,6 +241,30 @@ footer { text-align: center; display: grid; gap: .5rem; }
     <p class="hint">Tap a box to pick a photo of us from your phone.</p>
   </section>
 
+  <section aria-labelledby="letterTitle">
+    <h2 id="letterTitle">A letter for you</h2>
+    <button type="button" class="envelope" id="envelope" aria-expanded="false" aria-controls="letter">
+      <span class="flap" aria-hidden="true"></span>
+      <span class="seal" aria-hidden="true">♥</span>
+      <span class="click">Click it</span>
+    </button>
+    <article class="letter" id="letter" hidden>
+      <p class="greet">Dear Alvina, my beloved girlfriend</p>
+      <p>Hello sayang, this is my letter to u. i really write this deep down from my heart, so sorry for any ugly word choices or grammar mistakes hehehe.</p>
+      <p>i really grateful that we could meet once again after u read my text huh. never believed in red string theory, but the moment we met again all of sudden i believe in that theory. u already knew that i tbh feel embarassed, nervous and worried that u might ilfeel to me when i asked about shopee campaign promo or send my topless photo after morning run lol. but i glad those were worth it and we can be together! finally god on my side lol.</p>
+      <p>we were getting closer and closer, till one moment u asked me to pick a photo for ur profile pict, i was like shocked, couldnt say any words how happy i was cause i think its so special and u look really gorgeous on that peach dress.</p>
+      <p>i also remember u told me that ur feet hurt and bleeding and u scared to tell ur friend cause u didnt want to menyusahkan mereka but i kept insisting u and u finally told them and let them to mengobati u.</p>
+      <p>i still remember u never got any sunflowers before, u took a photo with them but u never own them, so i bought a bucket for u cause i know u really love it. i tried to match the shirt color with u, and plan the date to the sunflower statue that u wanna see, it was one of the happiest moment in my life.</p>
+      <p>so sorry i asked u to be my girlfriend on chat, but i was really sincere about that and think that no matter if u keep vaping, i still want u for the rest of my life.</p>
+      <p>so sorry if i lied and make u feel sad, i just want u to be safe and no need to worry about me at all. u alr have so much stress on ur shoulder and i dont want add any to u. i just want you to be happy, thats it. i dont want to put any stress or pressure to u, thats all. i never meant to lie to hide anything from u.</p>
+      <p>u already have so much stress from ur family, work, and ur disease, but everytime u kept asking me to just go with another girl, i never wanted that. i only want u in my life forever. i know i was scared i might get infected at first, but now no more like i told u i dont mind to get infected cause i alr set that my future is with u sayang.</p>
+      <p>as u read this, i want you to know that i love u so much, more than anything. all of my lies just to make u safe and no need to add more stress on ur shoulder about me cause i dont want to be a bad boyfriend. if u want something or anything, i will try my best to make it happen.</p>
+      <p>oh and thanks for make a playlist for me on spotify, and adding the four leafs clover to my name i really love it but sad it go now. but the saddest was when u removed the highlight about me. i know i was wrong there to not double check, im really sorry for that.</p>
+      <p>i want to keep being by ur side sayang, on the good days and the hard ones. stay strong, stay happy, i dont want u to be stressful or sad, and i'll be right here with u. i love you so much sayang, so so muchhhhhhhhhhhh &lt;3</p>
+      <p class="sign">from<br>Evan</p>
+    </article>
+  </section>
+
   <section aria-labelledby="next">
     <div class="future">
       <p class="eyebrow">Next chapter</p>
@@ -263,6 +317,17 @@ footer { text-align: center; display: grid; gap: .5rem; }
     } catch (err) {
       gateErr.textContent = "This browser can't open the lock. Try Chrome or Safari.";
     }
+  });
+
+  const envelope = document.getElementById("envelope");
+  const letter = document.getElementById("letter");
+  envelope.addEventListener("click", () => {
+    const opening = letter.hidden;
+    letter.hidden = !opening;
+    envelope.classList.toggle("open", opening);
+    envelope.setAttribute("aria-expanded", String(opening));
+    envelope.querySelector(".click").textContent = opening ? "Close it" : "Click it";
+    if (opening) letter.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   const replies = [

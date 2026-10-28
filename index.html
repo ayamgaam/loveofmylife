@@ -124,109 +124,109 @@ footer { text-align: center; display: grid; gap: .5rem; }
 <div class="gate" id="gate">
   <form id="gateForm" autocomplete="off">
     <div class="lock" aria-hidden="true">♥</div>
-    <h1 style="font-size: clamp(2rem, 7vw, 2.8rem);">Halo, Vina sayang</h1>
-    <p>Ada sesuatu buat kamu. Masukin password dulu ya.</p>
+    <h1 style="font-size: clamp(2rem, 7vw, 2.8rem);">Hi, Vina, my love</h1>
+    <p>I made something for you. Enter the password first.</p>
     <label for="pw" class="eyebrow">Password</label>
     <input id="pw" type="password" inputmode="numeric" placeholder="••••••••" required>
-    <p class="hint-box"><strong>Petunjuk:</strong> tanggal jadian kita. Urutannya tanggal, bulan, tahun, tanpa spasi.<br>Tulis pakai angka, ya. Contoh: ulang tahunmu, 25 Agustus 2026, ditulis <strong>25082026</strong>.</p>
+    <p class="hint-box"><strong>Hint:</strong> the day we became official. Day, month, year, no spaces.<br>Numbers only. For example, your birthday, 25 August 2026, is <strong>25082026</strong>.</p>
     <p class="err" id="gateErr" aria-live="polite"></p>
-    <button type="submit">Buka</button>
+    <button type="submit">Open</button>
   </form>
 </div>
 
 <main id="content" hidden>
   <header>
-    <p class="eyebrow">Cerita kita, sejauh ini</p>
-    <h1>Alvina <span class="amp">&amp;</span> aku</h1>
-    <p class="lede">Halaman kecil ini aku buat buat kamu. Isinya cerita kita, hal-hal kecil tentang kamu yang aku sayang, dan hal-hal yang masih mau aku jalani sama kamu.</p>
+    <p class="eyebrow">Our story, so far</p>
+    <h1>Alvina <span class="amp">&amp;</span> me</h1>
+    <p class="lede">I made this little page for you. It holds our story, the small things I love about you, and everything I still want to do with you.</p>
   </header>
 
   <section aria-labelledby="story">
-    <h2 id="story">Gimana kita ketemu</h2>
+    <h2 id="story">How we met</h2>
     <ol class="thread">
       <li>
         <span class="dot" aria-hidden="true"></span>
         <div class="body">
-          <time>Juni 2025</time>
-          <h3>Match di Bumble</h3>
-          <p>Pertama kali kita kenalan. Waktu itu aku belum tahu kalau orang di layar itu bakal jadi orang yang paling aku sayang.</p>
+          <time>June 2025</time>
+          <h3>A match on Bumble</h3>
+          <p>The first time we talked. Back then I had no idea the person on my screen would become the one I love most.</p>
         </div>
       </li>
       <li>
         <span class="dot" aria-hidden="true"></span>
         <div class="body">
-          <time>Setelahnya</time>
-          <h3>Sempat hilang kontak</h3>
-          <p>Kita sempat jalan sendiri-sendiri. Aku kira cerita kita berhenti di situ.</p>
+          <time>After that</time>
+          <h3>We lost touch</h3>
+          <p>We drifted our separate ways. I thought that was the end of our story.</p>
         </div>
       </li>
       <li>
         <span class="dot" aria-hidden="true"></span>
         <div class="body">
           <time>September 2025</time>
-          <h3>Ketemu lagi lewat teman</h3>
-          <p>Ternyata kamu kenalan sama temanku, dan kita dipertemukan lagi. Kali ini kita dekat beneran. Rasanya kayak dikasih kesempatan kedua.</p>
+          <h3>Found each other again</h3>
+          <p>You met a friend of mine, and that brought us back together. This time we really got close. It felt like being given a second chance.</p>
         </div>
       </li>
       <li>
         <span class="dot" aria-hidden="true"></span>
         <div class="body">
-          <time>30 Maret 2026</time>
-          <h3>Kita jadian</h3>
-          <p>Hari yang jadi password halaman ini. Hari yang selalu aku ingat.</p>
+          <time>30 March 2026</time>
+          <h3>We became us</h3>
+          <p>The day that opens this page. The day I always remember.</p>
         </div>
       </li>
       <li class="now">
         <span class="dot" aria-hidden="true"></span>
         <div class="body">
-          <time>Sekarang</time>
-          <h3>Masih kamu</h3>
-          <p>Dan masih akan kamu.</p>
+          <time>Now</time>
+          <h3>Still you</h3>
+          <p>And it will still be you.</p>
         </div>
       </li>
     </ol>
   </section>
 
   <section aria-labelledby="things">
-    <h2 id="things">Hal-hal kecil tentang kamu</h2>
+    <h2 id="things">Little things about you</h2>
     <ul class="things">
-      <li><span>Kamu baik banget, ke aku dan ke orang-orang di sekitarmu.</span></li>
-      <li><span>Kamu kuat, walaupun hari-harimu nggak selalu gampang. Aku kagum sama kamu.</span></li>
-      <li><span>Kamu udah bantu aku lebih dari yang bisa aku bilang. Aku nggak pernah lupa, dan aku berterima kasih banget.</span></li>
-      <li><span>Kamu hobi banget nge-rage bait aku dan ngelitikin aku. Aku pura-pura kesel, padahal aku suka.</span></li>
+      <li><span>You are so kind, to me and to everyone around you.</span></li>
+      <li><span>You are strong, even on the days that are hard for you. I admire you.</span></li>
+      <li><span>You have helped me more than I can put into words. I never forget it, and I am so grateful.</span></li>
+      <li><span>You love to rage bait me and tickle me. I pretend to be annoyed, but I secretly love it.</span></li>
     </ul>
     <div class="tease">
-      <button type="button" id="teaseBtn">Jahili aku</button>
+      <button type="button" id="teaseBtn">Tease me</button>
       <span id="teaseReply" aria-live="polite"></span>
     </div>
   </section>
 
   <section aria-labelledby="photos">
-    <h2 id="photos">Kita</h2>
+    <h2 id="photos">Us</h2>
     <div class="photos">
-      <label class="slot"><input type="file" id="p1" accept="image/*"><span>Tambah foto</span></label>
-      <label class="slot"><input type="file" id="p2" accept="image/*"><span>Tambah foto</span></label>
-      <label class="slot"><input type="file" id="p3" accept="image/*"><span>Tambah foto</span></label>
+      <label class="slot"><input type="file" id="p1" accept="image/*"><span>Add a photo</span></label>
+      <label class="slot"><input type="file" id="p2" accept="image/*"><span>Add a photo</span></label>
+      <label class="slot"><input type="file" id="p3" accept="image/*"><span>Add a photo</span></label>
     </div>
-    <p class="hint">Ketuk kotaknya buat pilih foto kita dari HP.</p>
+    <p class="hint">Tap a box to pick a photo of us from your phone.</p>
   </section>
 
   <section aria-labelledby="next">
     <div class="future">
-      <p class="eyebrow">Bab berikutnya</p>
-      <h2 id="next">Yang masih mau aku jalani sama kamu</h2>
+      <p class="eyebrow">Next chapter</p>
+      <h2 id="next">What I still want to do with you</h2>
       <ul class="plan">
-        <li><span>→</span><span>Lebih banyak hari biasa: makan bareng, ngobrol nggak jelas, kamu ngejahilin aku lagi.</span></li>
-        <li><span>→</span><span>Nemenin kamu di hari-hari kamu lagi nggak enak badan, kayak kamu nemenin aku.</span></li>
-        <li><span>→</span><span>Pernikahan kita. Sederhana, tapi penuh arti.</span></li>
+        <li><span>→</span><span>More ordinary days: eating together, talking about nothing, you teasing me again.</span></li>
+        <li><span>→</span><span>Being with you on the days you feel unwell, the way you have been there for me.</span></li>
+        <li><span>→</span><span>Our wedding. Simple, but full of meaning.</span></li>
       </ul>
-      <p class="hand">Halaman ini belum selesai. Masih banyak yang mau aku tulis bareng kamu.</p>
+      <p class="hand">This page isn't finished. There is so much more I want to write with you.</p>
     </div>
   </section>
 
   <footer>
-    <p class="hand">Aku sayang kamu, Vin.</p>
-    <p class="hint">Dari aku, yang masih mau dijahili sama kamu bertahun-tahun lagi.</p>
+    <p class="hand">I love you, Vin.</p>
+    <p class="hint">From me, who still wants to be teased by you for many more years.</p>
   </footer>
 </main>
 
@@ -258,19 +258,19 @@ footer { text-align: center; display: grid; gap: .5rem; }
         unlock();
         window.scrollTo(0, 0);
       } else {
-        gateErr.textContent = "Belum bener. Coba ingat-ingat lagi hari itu.";
+        gateErr.textContent = "Not quite. Think back to that day.";
         input.select();
       }
     } catch (err) {
-      gateErr.textContent = "Browser ini belum bisa buka kuncinya. Coba buka lewat Chrome atau Safari.";
+      gateErr.textContent = "This browser can't open the lock. Try Chrome or Safari.";
     }
   });
 
   const replies = [
-    "Ih, geli! 😆",
-    "Udah, udah, nyerah!",
-    "Oke oke, kamu menang.",
-    "Sekali lagi deh, boleh.",
+    "Hey, that tickles! 😆",
+    "Okay, okay, I give up!",
+    "Fine, you win.",
+    "Alright, one more time.",
   ];
   let i = 0;
   const btn = document.getElementById("teaseBtn");
@@ -294,7 +294,7 @@ footer { text-align: center; display: grid; gap: .5rem; }
         slot.querySelector("img")?.remove();
         const img = document.createElement("img");
         img.src = reader.result;
-        img.alt = "Foto kita";
+        img.alt = "A photo of us";
         slot.appendChild(img);
       };
       reader.readAsDataURL(file);

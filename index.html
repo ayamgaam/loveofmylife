@@ -139,12 +139,7 @@ footer { text-align: center; display: grid; gap: .5rem; }
 .letter p { max-width: 34rem; }
 .song { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: center; padding-bottom: .4rem; border-bottom: 1px dashed var(--line); }
 .song span { font-size: .9rem; color: var(--muted); width: 100%; text-align: center; }
-.song a {
-  font-weight: 700; text-decoration: none; color: var(--rose);
-  border: 2px solid var(--rose); padding: .45rem 1rem; border-radius: 999px;
-}
-.song a:hover { background: var(--rose); color: var(--paper); }
-.song a:focus-visible { outline: 3px solid var(--honey); outline-offset: 3px; }
+.song button { padding: .4rem 1rem; font-size: .95rem; }
 .letter .greet, .letter .sign { font-family: var(--font-hand); font-size: 1.7rem; color: var(--rose); line-height: 1.25; }
 .letter .sign { text-align: right; }
 @keyframes rise { from { opacity: .2; transform: translateY(12px); } to { opacity: 1; transform: none; } }
@@ -326,9 +321,9 @@ footer { text-align: center; display: grid; gap: .5rem; }
     </button>
     <article class="letter" id="letter" hidden>
       <div class="song">
-        <span>Play our song while you read: Next to Me, Imagine Dragons</span>
-        <a href="https://open.spotify.com/search/Next%20to%20Me%20Imagine%20Dragons" target="_blank" rel="noopener">🎵 Spotify</a>
-        <a href="https://www.youtube.com/results?search_query=Next+to+Me+Imagine+Dragons" target="_blank" rel="noopener">🎵 YouTube</a>
+        <span>🎵 Our song: Next to Me, Imagine Dragons</span>
+        <button type="button" id="songBtn" aria-pressed="true">⏸ Pause</button>
+        <audio id="song" src="audio/next-to-me.mp3" loop preload="auto"></audio>
       </div>
       <p class="greet">Dear Alvina, my beloved girlfriend</p>
       <p>Hello sayang, this is my letter to u. i really write this deep down from my heart, so sorry for any ugly word choices or grammar mistakes hehehe.</p>
@@ -389,13 +384,37 @@ footer { text-align: center; display: grid; gap: .5rem; }
 
   const envelope = document.getElementById("envelope");
   const letter = document.getElementById("letter");
+  const song = document.getElementById("song");
+  const songBtn = document.getElementById("songBtn");
+
+  function playSong() {
+    const p = song.play();
+    if (p && p.catch) p.catch(() => showSongState(false));
+    showSongState(true);
+  }
+  function pauseSong() {
+    song.pause();
+    showSongState(false);
+  }
+  function showSongState(playing) {
+    songBtn.textContent = playing ? "⏸ Pause" : "▶ Play";
+    songBtn.setAttribute("aria-pressed", String(playing));
+  }
+
+  songBtn.addEventListener("click", () => (song.paused ? playSong() : pauseSong()));
+
   envelope.addEventListener("click", () => {
     const opening = letter.hidden;
     letter.hidden = !opening;
     envelope.classList.toggle("open", opening);
     envelope.setAttribute("aria-expanded", String(opening));
     envelope.querySelector(".click").textContent = opening ? "Close it" : "Click it";
-    if (opening) letter.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (opening) {
+      playSong();
+      letter.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      pauseSong();
+    }
   });
 
   const replies = [

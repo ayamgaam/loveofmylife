@@ -82,10 +82,11 @@ button:focus-visible, label.slot:focus-within { outline: 3px solid var(--honey);
 @keyframes wiggle { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
 
 /* Photos */
-.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 1.4rem; }
+.gallery { columns: 2 15rem; column-gap: 1.4rem; }
 .gallery figure {
-  margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: .4rem;
-  padding: .7rem .7rem 1rem; display: grid; gap: .7rem; align-content: start; min-width: 0;
+  margin: 0 0 1.4rem; background: var(--paper); border: 1px solid var(--line); border-radius: .4rem;
+  padding: .7rem .7rem 1rem; display: grid; gap: .7rem; min-width: 0;
+  break-inside: avoid; page-break-inside: avoid;
 }
 .gallery img, .gallery video { width: 100%; max-width: 100%; height: auto; border-radius: .25rem; display: block; background: var(--line); }
 .gallery figcaption { font-family: var(--font-hand); font-size: 1.45rem; line-height: 1.25; color: var(--rose); text-align: center; }

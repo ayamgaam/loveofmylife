@@ -137,9 +137,6 @@ footer { text-align: center; display: grid; gap: .5rem; }
   padding: 2rem 1.4rem; display: grid; gap: 1rem; animation: rise .6s ease;
 }
 .letter p { max-width: 34rem; }
-.song { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: center; padding-bottom: .4rem; border-bottom: 1px dashed var(--line); }
-.song span { font-size: .9rem; color: var(--muted); width: 100%; text-align: center; }
-.song button { padding: .4rem 1rem; font-size: .95rem; }
 .letter .greet, .letter .sign { font-family: var(--font-hand); font-size: 1.7rem; color: var(--rose); line-height: 1.25; }
 .letter .sign { text-align: right; }
 @keyframes rise { from { opacity: .2; transform: translateY(12px); } to { opacity: 1; transform: none; } }
@@ -320,11 +317,7 @@ footer { text-align: center; display: grid; gap: .5rem; }
       <span class="click">Click it</span>
     </button>
     <article class="letter" id="letter" hidden>
-      <div class="song">
-        <span>🎵 Our song: Next to Me, Imagine Dragons</span>
-        <button type="button" id="songBtn" aria-pressed="true">⏸ Pause</button>
-        <audio id="song" src="audio/next-to-me.mp3" loop preload="auto"></audio>
-      </div>
+      <audio id="song" src="audio/next-to-me.mp3" loop preload="auto"></audio>
       <p class="greet">Dear Alvina, my beloved girlfriend</p>
       <p>Hello sayang, this is my letter to u. i really write this deep down from my heart, so sorry for any ugly word choices or grammar mistakes hehehe.</p>
       <p>i really grateful that we could meet once again after u read my text huh. never believed in red string theory, but the moment we met again all of sudden i believe in that theory. u already knew that i tbh feel embarassed, nervous and worried that u might get turned off by me when i asked about shopee campaign promo or send my topless photo after morning run lol. but i glad those were worth it and we can be together! finally god on my side lol.</p>
@@ -385,23 +378,14 @@ footer { text-align: center; display: grid; gap: .5rem; }
   const envelope = document.getElementById("envelope");
   const letter = document.getElementById("letter");
   const song = document.getElementById("song");
-  const songBtn = document.getElementById("songBtn");
 
   function playSong() {
     const p = song.play();
-    if (p && p.catch) p.catch(() => showSongState(false));
-    showSongState(true);
+    if (p && p.catch) p.catch(() => {});
   }
   function pauseSong() {
     song.pause();
-    showSongState(false);
   }
-  function showSongState(playing) {
-    songBtn.textContent = playing ? "⏸ Pause" : "▶ Play";
-    songBtn.setAttribute("aria-pressed", String(playing));
-  }
-
-  songBtn.addEventListener("click", () => (song.paused ? playSong() : pauseSong()));
 
   envelope.addEventListener("click", () => {
     const opening = letter.hidden;

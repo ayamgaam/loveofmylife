@@ -103,11 +103,38 @@ label.slot input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 
 footer { text-align: center; display: grid; gap: .5rem; }
 
+/* Lock screen */
+.gate { min-height: 100%; display: grid; place-items: center; padding-block: 4rem; }
+.gate form { max-width: 24rem; width: 100%; display: grid; gap: 1rem; text-align: center; }
+.gate .lock { font-size: 2.2rem; color: var(--rose); line-height: 1; }
+.gate input {
+  font: inherit; font-size: 1.3rem; text-align: center; letter-spacing: .2em;
+  font-variant-numeric: tabular-nums; width: 100%; padding: .7rem 1rem;
+  border: 2px solid var(--line); border-radius: .5rem; background: var(--paper); color: var(--ink);
+}
+.gate input:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+.gate .hint-box { background: var(--paper); border: 1px dashed var(--line); border-radius: .5rem; padding: .7rem 1rem; font-size: .92rem; color: var(--muted); }
+.gate .err { color: var(--rose); font-weight: 600; min-height: 1.5em; }
+.gate button { justify-self: center; }
+
 @media (prefers-reduced-motion: reduce) { .wiggle { animation: none; } }
 @media (max-width: 420px) { .photos { grid-template-columns: repeat(2, 1fr); } }
 </style>
 
-<main>
+<div class="gate" id="gate">
+  <form id="gateForm" autocomplete="off">
+    <div class="lock" aria-hidden="true">♥</div>
+    <h1 style="font-size: clamp(2rem, 7vw, 2.8rem);">Halo, Vin</h1>
+    <p>Ada sesuatu buat kamu. Masukin password dulu ya.</p>
+    <label for="pw" class="eyebrow">Password</label>
+    <input id="pw" type="password" inputmode="numeric" placeholder="••••••••" required>
+    <p class="hint-box"><strong>Petunjuk:</strong> tanggal jadian kita. Urutannya tanggal, bulan, tahun, tanpa spasi.</p>
+    <p class="err" id="gateErr" aria-live="polite"></p>
+    <button type="submit">Buka</button>
+  </form>
+</div>
+
+<main id="content" hidden>
   <header>
     <p class="eyebrow">Cerita kita, sejauh ini</p>
     <h1>Alvina <span class="amp">&amp;</span> aku</h1>
@@ -139,6 +166,14 @@ footer { text-align: center; display: grid; gap: .5rem; }
           <time>September 2025</time>
           <h3>Ketemu lagi lewat teman</h3>
           <p>Ternyata kamu kenalan sama temanku, dan kita dipertemukan lagi. Kali ini kita dekat beneran. Rasanya kayak dikasih kesempatan kedua.</p>
+        </div>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <div class="body">
+          <time>30 Maret 2026</time>
+          <h3>Kita jadian</h3>
+          <p>Hari yang jadi password halaman ini. Hari yang selalu aku ingat.</p>
         </div>
       </li>
       <li class="now">
@@ -196,6 +231,41 @@ footer { text-align: center; display: grid; gap: .5rem; }
 </main>
 
 <script>
+  const PASS_HASH = "91993fa4d16c499283f637d8e474444ea14c5e28e4467e3c9b555d17609fca9c";
+  const gate = document.getElementById("gate");
+  const content = document.getElementById("content");
+  const gateErr = document.getElementById("gateErr");
+
+  function unlock() {
+    gate.hidden = true;
+    content.hidden = false;
+    try { sessionStorage.setItem("unlocked", "1"); } catch (e) {}
+  }
+
+  async function sha256(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  try { if (sessionStorage.getItem("unlocked") === "1") unlock(); } catch (e) {}
+
+  document.getElementById("gateForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const input = document.getElementById("pw");
+    const digits = input.value.replace(/\D/g, "");
+    try {
+      if (await sha256(digits) === PASS_HASH) {
+        unlock();
+        window.scrollTo(0, 0);
+      } else {
+        gateErr.textContent = "Belum bener. Coba ingat-ingat lagi hari itu.";
+        input.select();
+      }
+    } catch (err) {
+      gateErr.textContent = "Browser ini belum bisa buka kuncinya. Coba buka lewat Chrome atau Safari.";
+    }
+  });
+
   const replies = [
     "Ih, geli! 😆",
     "Udah, udah, nyerah!",
